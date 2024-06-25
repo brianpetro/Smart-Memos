@@ -1,5 +1,4 @@
 import { App, Editor, MarkdownView, normalizePath, Notice, Plugin, PluginSettingTab, requestUrl,  RequestUrlParam, Setting, TAbstractFile, TFile } from 'obsidian';
-// const {SmartChatModel} = require('smart-chat-model');
 import {SmartTemplates} from '../jsbrains/smart-templates/smart_templates.mjs';
 
 
@@ -231,35 +230,7 @@ export default class SmartMemosPlugin extends Plugin {
         });
 
 		new Notice(`Performing customized superhuman analysis...`);
-
-
         let LnToWrite = this.getNextNewLine(editor, currentLn);
-        let lastLine = LnToWrite;
-        // const mock_env = {
-        //     chunk_handler: (chunk: string) => {
-        //         editor.setLine(LnToWrite, editor.getLine(LnToWrite) + chunk);
-        //         if(chunk.includes('\n')){
-        //             LnToWrite = this.getNextNewLine(editor, LnToWrite);
-        //         }
-        //     },
-        //     done_handler: (final_resp: string) => {
-        //         LnToWrite = this.getNextNewLine(editor, lastLine);
-        //         if(this.settings.includeTranscript) {
-        //             editor.setLine(LnToWrite, editor.getLine(LnToWrite) + '\n# Transcript\n' + this.transcript);
-        //         }
-        //     }
-        // };
-
-        // const smart_chat_model = new SmartChatModel(
-        //     mock_env,
-        //     "openai",
-        //     {
-        //         api_key: this.settings.apiKey,
-        //         model: this.settings.model,
-        //     }
-        // );
-        // const resp = await smart_chat_model.complete({messages: messages});
-        // console.log('resp: ', resp);
         const template = "# Summary\n<%- summary %>\n# Notes\n<%- notes %>\n# Mermaid\n```mermaid\n<%- mermaid %>\n```";
         const smart_templates = new SmartTemplates({
             settings: {
